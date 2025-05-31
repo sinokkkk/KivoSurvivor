@@ -16,7 +16,7 @@ bool is_debug = false;
 Camera main_camera;
 SceneManager scene_manager;
 
-IMAGE img_menu_background;
+Atlas atlas_intro;
 
 IMAGE img_VS;
 IMAGE img_1P;
@@ -113,7 +113,7 @@ void load_game_resources()
 {
 	AddFontResourceEx(_T("resources/IPix.ttf"), FR_PRIVATE, NULL);
 
-	loadimage(&img_menu_background, _T("resources/menu_background.png"));
+	atlas_intro.load_from_file(_T("resources/INTRO_%d.png"), 5);
 
 	loadimage(&img_VS, _T("resources/VS.png"));
 	loadimage(&img_1P, _T("resources/1P.png"));

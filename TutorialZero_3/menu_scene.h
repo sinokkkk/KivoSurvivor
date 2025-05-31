@@ -3,8 +3,7 @@
 
 #include "scene.h"
 #include "scene_manager.h"
-
-extern IMAGE img_menu_background;
+extern Atlas atlas_intro;
 
 extern SceneManager scene_manager;
 
@@ -17,11 +16,16 @@ public:
 	void on_enter()
 	{
 		mciSendString(_T("play bgm_menu repeat from 0"), NULL, 0, NULL);
+		animation_intro.set_atlas(&atlas_intro);
+		animation_intro.set_interval(4000 );
+		animation_intro.set_loop(true);
 	}
-
+	void on_update(int delta) {
+		animation_intro.on_update(delta);
+	}
 	void on_draw(const Camera& camera) 
 	{
-		putimage(0, 0, &img_menu_background);
+		animation_intro.on_draw(camera, 0, 0);
 	}
 
 	void on_input(const ExMessage& msg) 
@@ -32,6 +36,8 @@ public:
 			scene_manager.switch_to(SceneManager::SceneType::Selector);
 		}
 	}
+private:
+	Animation animation_intro;
 };
 
 #endif // !_MENU_SCENE_H_
