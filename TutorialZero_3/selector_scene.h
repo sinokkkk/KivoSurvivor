@@ -99,6 +99,7 @@ public:
 
 	void on_draw(const Camera& camera)
 	{
+
 		IMAGE* img_p1_selector_background = nullptr;
 		IMAGE* img_p2_selector_background = nullptr;
 
@@ -179,6 +180,9 @@ public:
 		putimage_alpha(pos_img_2P_desc.x, pos_img_2P_desc.y, &img_2P_desc);
 
 		putimage_alpha(pos_img_tip.x, pos_img_tip.y, &img_selector_tip);
+
+		LPCTSTR str_select_title = _T("了 解 你 的 学 生");
+		outtextxy_shaded((getwidth() - textwidth(_T("了 解 你 的 学 生"))) / 2, 10, str_select_title);
 	}
 
 	void on_input(const ExMessage& msg)

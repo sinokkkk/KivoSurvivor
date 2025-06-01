@@ -18,6 +18,13 @@ SceneManager scene_manager;
 
 Atlas atlas_intro;
 
+IMAGE img_aris_chosen;
+IMAGE img_aris_unchosen;
+IMAGE img_unlocked_chosen;
+IMAGE img_unlocked_unchosen;
+IMAGE img_selector_background;
+//修改的select图片资源
+
 IMAGE img_VS;
 IMAGE img_1P;
 IMAGE img_2P;
@@ -113,7 +120,11 @@ void load_game_resources()
 {
 	AddFontResourceEx(_T("resources/IPix.ttf"), FR_PRIVATE, NULL);
 
-	atlas_intro.load_from_file(_T("resources/INTRO_%d.png"), 5);
+	atlas_intro.load_from_file(_T("resources/INTRO_%d.png"), 5);//开场
+	loadimage(&img_aris_chosen, _T("resources/aris_chosen.png"));
+	loadimage(&img_aris_unchosen, _T("resources/aris_unchosen.png"));
+	loadimage(&img_unlocked_chosen, _T("resources/unlocked_chosen.png"));
+	loadimage(&img_unlocked_unchosen, _T("resources/unlocked_unchosen.png"));
 
 	loadimage(&img_VS, _T("resources/VS.png"));
 	loadimage(&img_1P, _T("resources/1P.png"));
