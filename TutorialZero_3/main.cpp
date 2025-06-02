@@ -1,4 +1,4 @@
-#include "atlas.h"
+ï»¿#include "atlas.h"
 #include "bullet.h"
 #include "player.h"
 #include "platform.h"
@@ -23,8 +23,23 @@ IMAGE img_aris_unchosen;
 IMAGE img_unlocked_chosen;
 IMAGE img_unlocked_unchosen;
 IMAGE img_selector_background;
-//ÐÞ¸ÄµÄselectÍ¼Æ¬×ÊÔ´
+IMAGE img_aris_selector_background;
+//æˆ‘ä»¬çš„select
 
+IMAGE img_game_background;
+Atlas atlas_aris_idle_left;
+Atlas atlas_aris_idle_right;
+Atlas atlas_aris_run_left;
+Atlas atlas_aris_run_right;
+Atlas atlas_aris_attack_ex_left;
+Atlas atlas_aris_attack_ex_right;
+Atlas atlas_aris_die_left;
+Atlas atlas_aris_die_right;
+
+IMAGE img_aris_bullet;
+Atlas atlas_aris_bullet_hit;
+
+/*
 IMAGE img_VS;
 IMAGE img_1P;
 IMAGE img_2P;
@@ -54,60 +69,58 @@ IMAGE img_platform_small;
 
 IMAGE img_1P_cursor;
 IMAGE img_2P_cursor;
+*/
 
-Atlas atlas_peashooter_idle_left;
-Atlas atlas_peashooter_idle_right;
-Atlas atlas_peashooter_run_left;
-Atlas atlas_peashooter_run_right;
-Atlas atlas_peashooter_attack_ex_left;
-Atlas atlas_peashooter_attack_ex_right;
-Atlas atlas_peashooter_die_left;
-Atlas atlas_peashooter_die_right;
 
-Atlas atlas_sunflower_idle_left;
-Atlas atlas_sunflower_idle_right;
-Atlas atlas_sunflower_run_left;
-Atlas atlas_sunflower_run_right;
-Atlas atlas_sunflower_attack_ex_left;
-Atlas atlas_sunflower_attack_ex_right;
-Atlas atlas_sunflower_die_left;
-Atlas atlas_sunflower_die_right;
 
-IMAGE img_pea;
-Atlas atlas_pea_break;
-Atlas atlas_sun;
-Atlas atlas_sun_explode;
-Atlas atlas_sun_ex;
-Atlas atlas_sun_ex_explode;
-Atlas atlas_sun_text;
+//Atlas atlas_peashooter_idle_left;
+//Atlas atlas_peashooter_idle_right;
+//Atlas atlas_peashooter_run_left;
+//Atlas atlas_peashooter_run_right;
+//Atlas atlas_peashooter_attack_ex_left;
+//Atlas atlas_peashooter_attack_ex_right;
+//Atlas atlas_peashooter_die_left;
+//Atlas atlas_peashooter_die_right;
+//
+//Atlas atlas_sunflower_idle_left;
+//Atlas atlas_sunflower_idle_right;
+//Atlas atlas_sunflower_run_left;
+//Atlas atlas_sunflower_run_right;
+//Atlas atlas_sunflower_attack_ex_left;
+//Atlas atlas_sunflower_attack_ex_right;
+//Atlas atlas_sunflower_die_left;
+//Atlas atlas_sunflower_die_right;
+
+//IMAGE img_pea;
+//Atlas atlas_pea_break;
+
 
 Atlas atlas_run_effect;
 Atlas atlas_jump_effect;
 Atlas atlas_land_effect;
 
-IMAGE img_1P_winnner;
-IMAGE img_2P_winnner;
-IMAGE img_winnner_bar;
+// IMAGE img_1P_winnner;
+// IMAGE img_2P_winnner;
+// IMAGE img_winnner_bar;
 
-IMAGE img_avatar_peashooter;
-IMAGE img_avatar_sunflower;
+// IMAGE img_avatar_peashooter;
+// IMAGE img_avatar_sunflower;
 
 Scene* menu_scene = nullptr;
 Scene* selector_scene = nullptr;
 Scene* game_scene = nullptr;
 
 Player* player_1 = nullptr;
-Player* player_2 = nullptr;
+//Player* player_2 = nullptr;
 
-IMAGE* img_player_1_avatar = nullptr;
-IMAGE* img_player_2_avatar = nullptr;
+//IMAGE* img_player_1_avatar = nullptr;
+//IMAGE* img_player_2_avatar = nullptr;
 
 std::vector<Bullet*> bullet_list;
-std::vector<Platform> platform_list;
+
 
 void flip_atlas(Atlas& src, Atlas& dst)
 {
-	dst.clear();
 	for (int i = 0; i < src.get_size(); i++)
 	{
 		IMAGE img_flipped;
@@ -120,13 +133,15 @@ void load_game_resources()
 {
 	AddFontResourceEx(_T("resources/IPix.ttf"), FR_PRIVATE, NULL);
 
-	atlas_intro.load_from_file(_T("resources/INTRO_%d.png"), 5);//¿ª³¡
+	atlas_intro.load_from_file(_T("resources/INTRO_%d.png"), 5);//å¼€åœºåŠ¨ç”»
 	loadimage(&img_aris_chosen, _T("resources/aris_chosen.png"));
 	loadimage(&img_aris_unchosen, _T("resources/aris_unchosen.png"));
 	loadimage(&img_unlocked_chosen, _T("resources/unlocked_chosen.png"));
 	loadimage(&img_unlocked_unchosen, _T("resources/unlocked_unchosen.png"));
+	loadimage(&img_selector_background, _T("resources/selector_background.png"));
+	loadimage(&img_aris_selector_background, _T("resources/aris_selector_background.png"));
 
-	loadimage(&img_VS, _T("resources/VS.png"));
+	/*loadimage(&img_VS, _T("resources/VS.png"));
 	loadimage(&img_1P, _T("resources/1P.png"));
 	loadimage(&img_2P, _T("resources/2P.png"));
 	loadimage(&img_1P_desc, _T("resources/1P_desc.png"));
@@ -155,7 +170,27 @@ void load_game_resources()
 
 	loadimage(&img_1P_cursor, _T("resources/1P_cursor.png"));
 	loadimage(&img_2P_cursor, _T("resources/2P_cursor.png"));
+	*/
+	loadimage(&img_game_background, _T("resources/game_background.png"));
+	loadimage(&img_aris_bullet, _T("resources/aris_bullet.png"));
 
+	atlas_aris_idle_left.load_from_file(_T("resources/aris_idle_%d.png"), 1);
+	flip_atlas(atlas_aris_idle_left, atlas_aris_idle_right);
+	atlas_aris_run_left.load_from_file(_T("resources/aris_run_%d.png"), 1);
+	flip_atlas(atlas_aris_run_left, atlas_aris_run_right);
+	atlas_aris_attack_ex_left.load_from_file(_T("resources/aris_attack_ex_%d.png"), 1);
+	flip_atlas(atlas_aris_attack_ex_left, atlas_aris_attack_ex_right);
+	atlas_aris_die_left.load_from_file(_T("resources/aris_die_%d.png"), 1);
+	flip_atlas(atlas_aris_die_left, atlas_aris_die_right);
+
+	atlas_aris_bullet_hit.load_from_file(_T("resources/aris_bullet_hit_%d.png"), 5);
+
+
+
+	atlas_run_effect.load_from_file(_T("resources/run_effect_%d.png"), 4);
+	atlas_jump_effect.load_from_file(_T("resources/jump_effect_%d.png"), 5);
+	atlas_land_effect.load_from_file(_T("resources/land_effect_%d.png"), 2);
+	/*
 	atlas_peashooter_idle_right.load_from_file(_T("resources/peashooter_idle_%d.png"), 9);
 	flip_atlas(atlas_peashooter_idle_right, atlas_peashooter_idle_left);
 	atlas_peashooter_run_right.load_from_file(_T("resources/peashooter_run_%d.png"), 5);
@@ -182,17 +217,16 @@ void load_game_resources()
 	atlas_sun_ex_explode.load_from_file(_T("resources/sun_ex_explode_%d.png"), 5);
 	atlas_sun_text.load_from_file(_T("resources/sun_text_%d.png"), 6);
 
-	atlas_run_effect.load_from_file(_T("resources/run_effect_%d.png"), 4);
-	atlas_jump_effect.load_from_file(_T("resources/jump_effect_%d.png"), 5);
-	atlas_land_effect.load_from_file(_T("resources/land_effect_%d.png"), 2);
-
+	
+	*/
+/*
 	loadimage(&img_1P_winnner, _T("resources/1P_winner.png"));
 	loadimage(&img_2P_winnner, _T("resources/2P_winner.png"));
 	loadimage(&img_winnner_bar, _T("resources/winnner_bar.png"));
 
 	loadimage(&img_avatar_peashooter, _T("resources/avatar_peashooter.png"));
 	loadimage(&img_avatar_sunflower, _T("resources/avatar_sunflower.png"));
-
+*/
 	mciSendString(_T("open resources/bgm_game.mp3 alias bgm_game"), NULL, 0, NULL);
 	mciSendString(_T("open resources/bgm_menu.mp3 alias bgm_menu"), NULL, 0, NULL);
 	mciSendString(_T("open resources/pea_break_1.mp3 alias pea_break_1"), NULL, 0, NULL);
@@ -223,7 +257,7 @@ int main(int argc, char** argv)
 	scene_manager.set_current_scene(menu_scene);
 
 	HWND hwnd = initgraph(1280, 720, EW_SHOWCONSOLE);
-	SetWindowText(hwnd, _T("Ö²Îï´óÕ½½©Ê¬"));
+	SetWindowText(hwnd, _T("Ö²1"));
 	settextstyle(28, 0, _T("IPix"));
 	setbkmode(TRANSPARENT);
 
