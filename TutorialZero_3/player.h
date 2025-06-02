@@ -148,28 +148,52 @@ public:
 	{
 		if (hp <= 0) return;
 
-	switch (msg.message)
-        {
-        case WM_KEYDOWN:
-            switch (msg.vkcode)
-            {
-                // 'A'
-            case 0x41:
-                is_left_key_down = true;
-                break;
-                // 'D'
-            case 0x44:
-                is_right_key_down = true;
-                break;
-                // 'W'
-            case 0x57:
-                is_up_key_down = true;
-                break;
-                // 'S'
-            case 0x53:
-                is_down_key_down = true;
-                break;
-           	case WM_LBUTTONDOWN:  // 左键按下
+		switch (msg.message)
+		{
+			case WM_KEYDOWN:
+				switch (msg.vkcode)
+				{
+					// 'A'
+				case 0x41:
+					is_left_key_down = true;
+					break;
+					// 'D'
+				case 0x44:
+					is_right_key_down = true;
+					break;
+					// 'W'
+				case 0x57:
+					is_up_key_down = true;
+					break;
+					// 'S'
+				case 0x53:
+					is_down_key_down = true;
+					break;
+				}
+				break;
+				
+			case WM_KEYUP:
+				switch (msg.vkcode)
+				{
+					// 'A'
+				case 0x41:
+					is_left_key_down = false;
+					break;
+					// 'D'
+				case 0x44:
+					is_right_key_down = false;
+					break;
+					// 'W'
+				case 0x57:
+					is_up_key_down = false;
+					break;
+					// 'S'
+				case 0x53:
+					is_down_key_down = false;
+					break;
+				}
+				break;
+			case WM_LBUTTONDOWN:  // 左键按下
 				if (can_attack)
 				{
 					on_attack();
@@ -184,31 +208,10 @@ public:
 					mp = 0;
 				}
 				break;
-            }
-            break;
-        case WM_KEYUP:
-            switch (msg.vkcode)
-            {
-                // 'A'
-            case 0x41:
-                is_left_key_down = false;
-                break;
-                // 'D'
-            case 0x44:
-                is_right_key_down = false;
-                break;
-                // 'W'
-            case 0x57:
-                is_up_key_down = false;
-                break;
-                // 'S'
-            case 0x53:
-                is_down_key_down = false;
-                break;
-            }
-            break;
-        }
-	}
+		}
+    
+    }
+	
 
     virtual void on_run(float dir_x, float dir_y)
     {

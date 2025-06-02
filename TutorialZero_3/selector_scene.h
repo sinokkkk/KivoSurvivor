@@ -27,6 +27,7 @@ public:
 
 	void on_enter()
 	{
+		mciSendString(_T("play bgm_select repeat from 0"), NULL, 0, NULL);
 
         int total_width = 4 * 300 + 3 * 10;  // 4张图片总宽度 + 3个间距
         int start_x = (getwidth() - total_width) / 2;  // 起始x坐标
@@ -256,6 +257,7 @@ public:
 				}
 				break;
 			case VK_RETURN:  // 添加回车键处理
+				mciSendString(_T("stop bgm_select"), NULL, 0, NULL);
 				// 播放确认音效
 				mciSendString(_T("play ui_confirm from 0"), NULL, 0, NULL);
 				// 切换到游戏场景
@@ -268,6 +270,7 @@ public:
 
 	void on_exit() 
 	{
+		mciSendString(_T("stop bgm_menu"), NULL, 0, NULL);
 		// 根据当前选择的角色创建对应的玩家实例
 		switch (current_selection)
 		{
@@ -285,7 +288,7 @@ public:
 			break;
 		}
 
-		mciSendString(_T("stop bgm_menu"), NULL, 0, NULL);
+		
 	}
 
 private:

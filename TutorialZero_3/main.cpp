@@ -226,9 +226,6 @@ void load_game_resources()
 
 	loadimage(&img_avatar_peashooter, _T("resources/avatar_peashooter.png"));
 	loadimage(&img_avatar_sunflower, _T("resources/avatar_sunflower.png"));
-*/
-	mciSendString(_T("open resources/bgm_game.mp3 alias bgm_game"), NULL, 0, NULL);
-	mciSendString(_T("open resources/bgm_menu.mp3 alias bgm_menu"), NULL, 0, NULL);
 	mciSendString(_T("open resources/pea_break_1.mp3 alias pea_break_1"), NULL, 0, NULL);
 	mciSendString(_T("open resources/pea_break_2.mp3 alias pea_break_2"), NULL, 0, NULL);
 	mciSendString(_T("open resources/pea_break_3.mp3 alias pea_break_3"), NULL, 0, NULL);
@@ -238,6 +235,14 @@ void load_game_resources()
 	mciSendString(_T("open resources/sun_explode.mp3 alias sun_explode"), NULL, 0, NULL);
 	mciSendString(_T("open resources/sun_explode_ex.mp3 alias sun_explode_ex"), NULL, 0, NULL);
 	mciSendString(_T("open resources/sun_text.mp3 alias sun_text"), NULL, 0, NULL);
+*/
+	mciSendString(_T("open resources/bgm_game.mp3 alias bgm_game"), NULL, 0, NULL);
+	mciSendString(_T("open resources/bgm_menu.mp3 alias bgm_menu"), NULL, 0, NULL);
+	mciSendString(_T("open resources/bgm_select.mp3 alias bgm_select"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_bullet_hit_1.mp3 alias aris_bullet_hit_1"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_bullet_hit_2.mp3 alias aris_bullet_hit_2"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_bullet_hit_3.mp3 alias aris_bullet_hit_3"), NULL, 0, NULL);
+
 	mciSendString(_T("open resources/ui_confirm.wav alias ui_confirm"), NULL, 0, NULL);
 	mciSendString(_T("open resources/ui_switch.wav alias ui_switch"), NULL, 0, NULL);
 	mciSendString(_T("open resources/ui_win.wav alias ui_win"), NULL, 0, NULL);

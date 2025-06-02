@@ -8,6 +8,7 @@
 #include "aris_player.h"
 
 #include <vector>
+#include "scene_manager.h"
 
 extern bool is_debug;
 extern IMAGE img_game_background;

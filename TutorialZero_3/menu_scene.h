@@ -36,6 +36,9 @@ public:
 			scene_manager.switch_to(SceneManager::SceneType::Selector);
 		}
 	}
+	void on_exit(){
+		mciSendString(_T("stop bgm_menu"), NULL, 0, NULL);
+	}
 private:
 	Animation animation_intro;
 };

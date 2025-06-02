@@ -1,4 +1,4 @@
-#ifndef _ARIS_PLAYER_
+﻿#ifndef _ARIS_PLAYER_
 #define _ARIS_PLAYER_
 
 #include "player.h"
@@ -61,7 +61,7 @@ public:
         // 你可以添加更多属于Aris的计时器或特效
 
         // 设置角色大小
-        size.x = 96, size.y = 96;
+        size.x = 80, size.y = 96;
 
         // 设置攻击冷却
         
