@@ -1,4 +1,4 @@
-#ifndef _PLAYER_H_
+﻿#ifndef _PLAYER_H_
 #define _PLAYER_H_
 
 #include "timer.h"
@@ -68,25 +68,25 @@ public:
 
 	~Player() = default;
 
-	virtual void on_update(int delta)
-    {
+	virtual void on_update(int delta){
         // 计算移动方向
         int direction_x = is_right_key_down - is_left_key_down;
         int direction_y = is_down_key_down - is_up_key_down;
 
-        if (direction_x != 0 || direction_y != 0)
-        {
-            if (!is_attacking_ex)
-                is_facing_right = direction_x > 0;
+        if (direction_x != 0 || direction_y != 0){
+            if (!is_attacking_ex)    is_facing_right = direction_x > 0;	//与ex朝向逻辑对照
+
             current_animation = is_facing_right ? &animation_run_right : &animation_run_left;
-            on_run(direction_x * run_velocity * delta, direction_y * run_velocity * delta);
+            on_run(direction_x * run_velocity * delta, direction_y * run_velocity * delta);		//调用onrun方法
+
 			timer_run_effect_generation.resume();  // 移动时生成粒子
         }
-        else
-        {
+        else{
             current_animation = is_facing_right ? &animation_idle_right : &animation_idle_left;
 			timer_run_effect_generation.pause();  // 停止时暂停粒子生成
         }
+
+
 
         // 特殊攻击状态
         if (is_attacking_ex)
@@ -125,28 +125,28 @@ public:
         move_and_collide(delta);
     }
 
-	virtual void on_draw(const Camera& camera)
-	{
+
+	virtual void on_draw(const Camera& camera){
 		// 绘制粒子效果
 		for (const Particle& particle : particle_list)
 			particle.on_draw(camera);
+
+
 		//绘制角色
-		if (hp > 0 && is_invulnerable && is_showing_sketch_frame)
+		if (hp > 0 && is_invulnerable && is_showing_sketch_frame)//受伤闪烁逻辑
 			putimage_alpha(camera, (int)position.x, (int)position.y, &img_sketch);
 		else
 			current_animation->on_draw(camera, (int)position.x, (int)position.y);
 
-
-		if (is_debug)
-		{
+		//调试模式
+		if (is_debug){
 			setlinecolor(RGB(0, 125, 255));
 			rectangle((int)position.x, (int)position.y, (int)(position.x + size.x), (int)(position.y + size.y));
 		}
 	}
 
-	virtual void on_input(const ExMessage& msg)
-	{
-		if (hp <= 0) return;
+	virtual void on_input(const ExMessage& msg){
+		if (hp <= 0) return;//死了
 
 		switch (msg.message)
 		{
@@ -171,7 +171,6 @@ public:
 					break;
 				}
 				break;
-				
 			case WM_KEYUP:
 				switch (msg.vkcode)
 				{
@@ -213,9 +212,8 @@ public:
     }
 	
 
-    virtual void on_run(float dir_x, float dir_y)
-    {
-        if (is_attacking_ex) return;
+    virtual void on_run(float dir_x, float dir_y){
+        if (is_attacking_ex) return;//ex下不移动
         position.x += dir_x;
         position.y += dir_y;
     }
@@ -224,46 +222,30 @@ public:
 	virtual void on_attack() { }
 	virtual void on_attack_ex() { }
 
-	void set_hp(int val)
-	{
-		hp = val;
-	}
+	void set_hp(int val)	{ hp = val; }
 
-	int get_hp() const
-	{
-		return hp;
-	}
+	int get_hp() const		{return hp;}
 
-	int get_mp() const
-	{
-		return mp;
-	}
+	int get_mp() const		{return mp;}
 
-	void set_position(float x, float y)
-	{
-		position.x = x, position.y = y;
-	}
+	void set_position(float x, float y)		{position.x = x, position.y = y;}
 
-	const Vector2& get_postion() const
-	{
-		return position;
-	}
+	const Vector2& get_postion() const		{return position;}
 
-	const Vector2& get_size() const
-	{
-		return size;
-	}
+	const Vector2& get_size() const			{return size;}
 
 protected:
     const float run_velocity = 0.55f;  // 移动速度
     int mp = 0;
     int hp = 100;
     int attack_cd = 500;
+
     IMAGE img_sketch;
     Vector2 size;
     Vector2 position;
     Vector2 velocity;
     Vector2 last_hurt_direction;
+
     bool can_attack = true;
     bool is_facing_right = true;
     bool is_left_key_down = false;
@@ -300,21 +282,13 @@ protected:
 		timer_invulnerable.restart();
 	}
 
-	void move_and_collide(int delta)
-	{
-		// 如果当前处于无敌状态，则不检测子弹碰撞
-		if (!is_invulnerable)
-		{
-			// 遍历所有子弹
-			for (Bullet* bullet : bullet_list)
-			{
-				// 跳过无效子弹或目标不是本玩家的子弹
-				if (!bullet->get_valid() )
-					continue;
-
-				// 检查子弹是否与玩家发生碰撞
-				if (bullet->check_collision(position, size))
-				{
+	void move_and_collide(int delta){
+		if (!is_invulnerable){// 如果当前处于无敌状态，则不检测子弹碰撞
+			
+			for (Bullet* bullet : bullet_list){// 遍历所有子弹
+				if (!bullet->get_valid() || bullet->get_owner() == this ) continue;// 跳过无效子弹或目标不是本玩家的子弹
+				
+				if (bullet->check_collision(position, size)){// 检查子弹是否与玩家发生碰撞
 					make_invulnerable(); // 进入无敌状态，防止连续受伤
 					bullet->on_collide(); // 触发子弹的碰撞效果（如爆炸等）
 					bullet->set_valid(false); // 子弹失效（消失）
@@ -322,8 +296,7 @@ protected:
 					last_hurt_direction = bullet->get_position() - position; // 记录受伤方向（用于死亡动画朝向）
 
 					// 如果玩家生命值小于等于0，设置死亡时的击退效果
-					if (hp <= 0)
-					{
+					if (hp <= 0){
 						velocity.x = last_hurt_direction.x < 0 ? 0.35f : -0.35f; // 根据受击方向设置水平击退
 						velocity.y = -1.0f; // 设置垂直向上的击退
 					}

@@ -90,7 +90,7 @@ public:
 	void on_update(int delta)
 	{
 		// 更新背景滚动偏移量
-		selector_background_scroll_offset_x += 1;
+		selector_background_scroll_offset_x += 3;
 		if (selector_background_scroll_offset_x >= img_aris_selector_background.getwidth())
 			selector_background_scroll_offset_x = 0;
 	}
@@ -100,7 +100,7 @@ public:
 		putimage_alpha(0, 0, &img_selector_background);
 		// 绘制滚动背景
 		putimage_alpha(selector_background_scroll_offset_x - img_aris_selector_background.getwidth(), 0, &img_aris_selector_background);
-		putimage_alpha(selector_background_scroll_offset_x, 0, &img_aris_selector_background);
+		putimage_alpha(selector_background_scroll_offset_x, 40, &img_aris_selector_background);
 
 		// 绘制四个角色图片
 		putimage_alpha(pos_img_selector_1.x, pos_img_selector_1.y, 
@@ -123,30 +123,47 @@ public:
 		// Aris
 		outtextxy_shaded(
 			pos_img_selector_1.x + (300 - textwidth(str_aris_name)) / 2,  // 水平居中
-			pos_img_selector_1.y + 300,  // 图片下方
+			pos_img_selector_1.y + 450,  // 图片下方
 			str_aris_name
 		);
 
 		// Midori
 		outtextxy_shaded(
 			pos_img_selector_2.x + (300 - textwidth(str_midori_name)) / 2,
-			pos_img_selector_2.y + 300,
+			pos_img_selector_2.y + 450,
 			str_midori_name
+		);
+		outtextxy_shaded(
+			pos_img_selector_2.x + (300 - textwidth(str_midori_name)) / 2,
+			pos_img_selector_2.y + 500,
+			_T("和老师约会去了")
 		);
 
 		// Yuzu
 		outtextxy_shaded(
 			pos_img_selector_3.x + (300 - textwidth(str_yuzu_name)) / 2,
-			pos_img_selector_3.y + 300,
+			pos_img_selector_3.y +450 ,
 			str_yuzu_name
+		);
+		outtextxy_shaded(
+			pos_img_selector_3.x + (300 - textwidth(str_midori_name)) / 2,
+			pos_img_selector_3.y + 500,
+			_T("翘课打游戏了")
 		);
 
 		// Momoi
 		outtextxy_shaded(
 			pos_img_selector_4.x + (300 - textwidth(str_momoi_name)) / 2,
-			pos_img_selector_4.y + 300,
+			pos_img_selector_4.y + 450,
 			str_momoi_name
 		);
+		outtextxy_shaded(
+			pos_img_selector_4.x + (300 - textwidth(str_midori_name)) / 2,
+			pos_img_selector_4.y + 500,
+			_T("上课去了")
+		);
+
+
 {
 // 		IMAGE* img_p1_selector_background = nullptr;
 // 		IMAGE* img_p2_selector_background = nullptr;
