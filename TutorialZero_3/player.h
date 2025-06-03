@@ -69,22 +69,30 @@ public:
 	~Player() = default;
 
 	virtual void on_update(int delta){
-		Vector2 move_direction(0, 0);
-		if (is_left_key_down) move_direction.x -= 1;
-		if (is_right_key_down) move_direction.x += 1;
-		if (is_up_key_down) move_direction.y -= 1;
-		if (is_down_key_down) move_direction.y += 1;
-
-		if (move_direction.length() > 0) {
+		// 计算移动方向（使用整数方向值）
+		int dir_x = is_right_key_down - is_left_key_down;
+		int dir_y = is_down_key_down - is_up_key_down;
+		
+		if (dir_x != 0 || dir_y != 0) {
 			if (!is_attacking_ex) {
-				is_facing_right = move_direction.x > 0 || (move_direction.x == 0 && is_facing_right); // 保持当前朝向如果只有垂直移动
+				is_facing_right = dir_x > 0 || (dir_x == 0 && is_facing_right);
 			}
 			current_animation = is_facing_right ? &animation_run_right : &animation_run_left;
 
-			// 归一化方向向量并应用速度和delta
-			move_direction.normalize();
-			position.x += move_direction.x * run_velocity * delta;
-			position.y += move_direction.y * run_velocity * delta;
+			// 计算方向向量长度并归一化
+			float len_dir = sqrtf(dir_x * dir_x + dir_y * dir_y);
+			float normalized_x = dir_x / len_dir;
+			float normalized_y = dir_y / len_dir;
+
+			// 应用移动
+			position.x += normalized_x * run_velocity * delta;
+			position.y += normalized_y * run_velocity * delta;
+
+			// 立即进行边界检查
+			if (position.x < 0) position.x = 0;
+			if (position.y < 0) position.y = 0;
+			if (position.x + size.x > getwidth()) position.x = getwidth() - size.x;
+			if (position.y + size.y > getheight()) position.y = getheight() - size.y;
 
 			timer_run_effect_generation.resume();
 		}
@@ -92,13 +100,6 @@ public:
 			current_animation = is_facing_right ? &animation_idle_right : &animation_idle_left;
 			timer_run_effect_generation.pause();
 		}
-
-		// 添加边界检查
-		if (position.x < 0) position.x = 0;
-		if (position.y < 0) position.y = 0;
-		if (position.x + size.x > getwidth()) position.x = getwidth() - size.x;
-		if (position.y + size.y > getheight()) position.y = getheight() - size.y;
-
 
         // 特殊攻击状态
         if (is_attacking_ex)
@@ -131,7 +132,6 @@ public:
 			particle_list.end());
 		for (Particle& particle : particle_list)
 			particle.on_update(delta);
-
 
         // 处理移动和碰撞
         move_and_collide(delta);
@@ -253,7 +253,7 @@ public:
 	const Vector2& get_size() const			{return size;}
 
 protected:
-    const float run_velocity = 0.55f;  // 移动速度
+    const float run_velocity = 0.30f;  // 移动速度
     int mp = 0;
     int hp = 100;
     int attack_cd = 500;
