@@ -137,6 +137,9 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bullet_aris.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemy_fast.h" />
+    <ClInclude Include="enemy_slow.h" />
     <ClInclude Include="game_scene.h" />
     <ClInclude Include="menu_scene.h" />
     <ClInclude Include="particle.h" />

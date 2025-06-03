@@ -255,7 +255,7 @@ public:
 protected:
     const float run_velocity = 0.30f;  // 移动速度
     int mp = 0;
-    int hp = 100;
+    int hp = 1000;
     int attack_cd = 500;
 
     IMAGE img_sketch;

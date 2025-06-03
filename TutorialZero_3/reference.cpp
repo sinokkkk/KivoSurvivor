@@ -88,8 +88,8 @@ private:
 class Player
 {
 public:
-	const int FRAME_WIDTH = 80;		// Íæ¼Ò¿í¶È
-	const int FRAME_HEIGHT = 80;	// Íæ¼Ò¸ß¶È
+	const int FRAME_WIDTH = 80;		// ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½
+	const int FRAME_HEIGHT = 80;	// ï¿½ï¿½Ò¸ß¶ï¿½
 
 public:
 	Player()
@@ -145,6 +145,7 @@ public:
 			}
 			break;
 		}
+		
 	}
 
 	void Move()
@@ -192,7 +193,7 @@ public:
 
 private:
 	const int SPEED = 3;
-	const int SHADOW_WIDTH = 32;	// ÒõÓ°¿í¶È
+	const int SHADOW_WIDTH = 32;	// ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½
 
 private:
 	IMAGE img_shadow;
@@ -234,7 +235,7 @@ public:
 		anim_left = new Animation(atlas_enemy_left, 45);
 		anim_right = new Animation(atlas_enemy_right, 45);
 
-		// µÐÈËÉú³É±ß½ç
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ß½ï¿½
 		enum class SpawnEdge
 		{
 			Up = 0,
@@ -243,7 +244,7 @@ public:
 			Right
 		};
 
-		// ½«µÐÈË·ÅÖÃÔÚµØÍ¼Íâ±ß½ç´¦µÄËæ»úÎ»ÖÃ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½Úµï¿½Í¼ï¿½ï¿½ß½ç´¦ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 		SpawnEdge edge = (SpawnEdge)(rand() % 4);
 		switch (edge)
 		{
@@ -276,7 +277,7 @@ public:
 
 	bool CheckBulletCollision(const Bullet& bullet)
 	{
-		// ½«×Óµ¯µÈÐ§Îªµã£¬ÅÐ¶ÏµãÊÇ·ñÔÚµÐÈË¾ØÐÎÄÚ
+		// ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Ð§Îªï¿½ã£¬ï¿½Ð¶Ïµï¿½ï¿½Ç·ï¿½ï¿½Úµï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		bool is_overlap_x = bullet.position.x >= position.x && bullet.position.x <= position.x + FRAME_WIDTH;
 		bool is_overlap_y = bullet.position.y >= position.y && bullet.position.y <= position.y + FRAME_HEIGHT;
 		return is_overlap_x && is_overlap_y;
@@ -284,7 +285,7 @@ public:
 
 	bool CheckPlayerCollision(const Player& player)
 	{
-		// ½«µÐÈËÖÐÐÄÎ»ÖÃµÈÐ§Îªµã£¬ÅÐ¶ÏµãÊÇ·ñÔÚÍæ¼Ò¾ØÐÎÄÚ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãµï¿½Ð§Îªï¿½ã£¬ï¿½Ð¶Ïµï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		POINT check_position = { position.x + FRAME_WIDTH / 2, position.y + FRAME_HEIGHT / 2 };
 		const POINT& player_position = player.GetPosition();
 		bool is_overlap_x = check_position.x >= player_position.x && check_position.x <= player_position.x + player.FRAME_WIDTH;
@@ -336,9 +337,9 @@ public:
 
 private:
 	const int SPEED = 2;
-	const int FRAME_WIDTH = 80;		// µÐÈË¿í¶È
-	const int FRAME_HEIGHT = 80;	// µÐÈË¸ß¶È
-	const int SHADOW_WIDTH = 48;	// ÒõÓ°¿í¶È
+	const int FRAME_WIDTH = 80;		// ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½
+	const int FRAME_HEIGHT = 80;	// ï¿½ï¿½ï¿½Ë¸ß¶ï¿½
+	const int SHADOW_WIDTH = 48;	// ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½
 
 private:
 	IMAGE img_shadow;
@@ -421,14 +422,14 @@ private:
 	Status status = Status::Idle;
 
 private:
-	// ¼ì²âÊó±êµã»÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	bool CheckCursorHit(int x, int y)
 	{
 		return x >= region.left && x <= region.right && y >= region.top && y <= region.bottom;
 	}
 };
 
-// ¿ªÊ¼ÓÎÏ·°´Å¥
+// ï¿½ï¿½Ê¼ï¿½ï¿½Ï·ï¿½ï¿½Å¥
 class StartGameButton : public Button
 {
 public:
@@ -445,7 +446,7 @@ protected:
 	}
 };
 
-// ÍË³öÓÎÏ·°´Å¥
+// ï¿½Ë³ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Å¥
 class QuitGameButton : public Button
 {
 public:
@@ -460,7 +461,7 @@ protected:
 	}
 };
 
-// Éú³ÉÐÂµÄµÐÈË
+// ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄµï¿½ï¿½ï¿½
 void TryGenerateEnemy(std::vector<Enemy*>& enemy_list)
 {
 	const int INTERVAL = 100;
@@ -469,27 +470,27 @@ void TryGenerateEnemy(std::vector<Enemy*>& enemy_list)
 		enemy_list.push_back(new Enemy());
 }
 
-// ¸üÐÂ×Óµ¯Î»ÖÃ
+// ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Î»ï¿½ï¿½
 void UpdateBullets(std::vector<Bullet>& bullet_list, const Player& player)
 {
-	const double RADIAL_SPEED = 0.0045;							// ¾¶Ïò²¨¶¯ËÙ¶È
-	const double TANGENT_SPEED = 0.0055;						// ÇÐÏò²¨¶¯ËÙ¶È
-	double radian_interval = 2 * 3.14159 / bullet_list.size();	// ×Óµ¯Ö®¼äµÄ»¡¶È¼ä¸ô
+	const double RADIAL_SPEED = 0.0045;							// ï¿½ï¿½ï¿½ò²¨¶ï¿½ï¿½Ù¶ï¿½
+	const double TANGENT_SPEED = 0.0055;						// ï¿½ï¿½ï¿½ò²¨¶ï¿½ï¿½Ù¶ï¿½
+	double radian_interval = 2 * 3.14159 / bullet_list.size();	// ï¿½Óµï¿½Ö®ï¿½ï¿½Ä»ï¿½ï¿½È¼ï¿½ï¿½
 	POINT player_position = player.GetPosition();
 	double radius = 100 + 25 * sin(GetTickCount() * RADIAL_SPEED);
 	for (size_t i = 0; i < bullet_list.size(); i++)
 	{
-		double radian = GetTickCount() * TANGENT_SPEED + radian_interval * i;	// µ±Ç°×Óµ¯ËùÔÚ»¡¶ÈÖµ
+		double radian = GetTickCount() * TANGENT_SPEED + radian_interval * i;	// ï¿½ï¿½Ç°ï¿½Óµï¿½ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½Öµ
 		bullet_list[i].position.x = player_position.x + player.FRAME_WIDTH / 2 + (int)(radius * sin(radian));
 		bullet_list[i].position.y = player_position.y + player.FRAME_HEIGHT / 2 + (int)(radius * cos(radian));
 	}
 }
 
-// »æÖÆÍæ¼ÒµÃ·Ö
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÃ·ï¿½
 void DrawPlayerScore(int score)
 {
 	static TCHAR text[64];
-	_stprintf_s(text, _T("µ±Ç°Íæ¼ÒµÃ·Ö£º%d"), score);
+	_stprintf_s(text, _T("ï¿½ï¿½Ç°ï¿½ï¿½ÒµÃ·Ö£ï¿½%d"), score);
 
 	setbkmode(TRANSPARENT);
 	settextcolor(RGB(255, 85, 185));
@@ -556,17 +557,17 @@ int main()
 
 		if (is_game_started)
 		{
-			// ³¢ÊÔÉú³ÉÐÂµÄµÐÈË
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄµï¿½ï¿½ï¿½
 			TryGenerateEnemy(enemy_list);
 
-			// ÒÆ¶¯Íæ¼Ò
+			// ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½
 			player.Move();
-			// ¸üÐÂ×Óµ¯Î»ÖÃ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Î»ï¿½ï¿½
 			UpdateBullets(bullet_list, player);
-			// ¸üÐÂµÐÈËÎ»ÖÃ
+			// ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Î»ï¿½ï¿½
 			for (Enemy* enemy : enemy_list)
 				enemy->Move(player);
-			// ¼ì²â×Óµ¯ºÍµÐÈËµÄÅö×²
+			// ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Íµï¿½ï¿½Ëµï¿½ï¿½ï¿½×²
 			for (Enemy* enemy : enemy_list)
 			{
 				for (const Bullet& bullet : bullet_list)
@@ -579,7 +580,7 @@ int main()
 					}
 				}
 			}
-			// ÒÆ³ýÉúÃüÖµ¹éÁãµÄµÐÈË
+			// ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
 			for (size_t i = 0; i < enemy_list.size(); i++)
 			{
 				Enemy* enemy = enemy_list[i];
@@ -590,14 +591,14 @@ int main()
 					delete enemy;
 				}
 			}
-			// ¼ì²âµÐÈËºÍÍæ¼ÒµÄÅö×²
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½×²
 			for (Enemy* enemy : enemy_list)
 			{
 				if (enemy->CheckPlayerCollision(player))
 				{
 					static TCHAR text[128];
-					_stprintf_s(text, _T("×îÖÕµÃ·Ö£º%d !"), score);
-					MessageBox(GetHWnd(), text, _T("ÓÎÏ·½áÊø"), MB_OK);
+					_stprintf_s(text, _T("ï¿½ï¿½ï¿½ÕµÃ·Ö£ï¿½%d !"), score);
+					MessageBox(GetHWnd(), text, _T("ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½"), MB_OK);
 					running = false;
 					break;
 				}

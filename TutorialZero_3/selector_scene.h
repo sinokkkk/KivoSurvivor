@@ -90,7 +90,7 @@ public:
 	void on_update(int delta)
 	{
 		// 更新背景滚动偏移量
-		selector_background_scroll_offset_x += 3;
+		selector_background_scroll_offset_x += 1;
 		if (selector_background_scroll_offset_x >= img_aris_selector_background.getwidth())
 			selector_background_scroll_offset_x = 0;
 	}
