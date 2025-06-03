@@ -69,23 +69,35 @@ public:
 	~Player() = default;
 
 	virtual void on_update(int delta){
-        // 计算移动方向
-        int direction_x = is_right_key_down - is_left_key_down;
-        int direction_y = is_down_key_down - is_up_key_down;
+		Vector2 move_direction(0, 0);
+		if (is_left_key_down) move_direction.x -= 1;
+		if (is_right_key_down) move_direction.x += 1;
+		if (is_up_key_down) move_direction.y -= 1;
+		if (is_down_key_down) move_direction.y += 1;
 
-        if (direction_x != 0 || direction_y != 0){
-            if (!is_attacking_ex)    is_facing_right = direction_x > 0;	//与ex朝向逻辑对照
+		if (move_direction.length() > 0) {
+			if (!is_attacking_ex) {
+				is_facing_right = move_direction.x > 0 || (move_direction.x == 0 && is_facing_right); // 保持当前朝向如果只有垂直移动
+			}
+			current_animation = is_facing_right ? &animation_run_right : &animation_run_left;
 
-            current_animation = is_facing_right ? &animation_run_right : &animation_run_left;
-            on_run(direction_x * run_velocity * delta, direction_y * run_velocity * delta);		//调用onrun方法
+			// 归一化方向向量并应用速度和delta
+			move_direction.normalize();
+			position.x += move_direction.x * run_velocity * delta;
+			position.y += move_direction.y * run_velocity * delta;
 
-			timer_run_effect_generation.resume();  // 移动时生成粒子
-        }
-        else{
-            current_animation = is_facing_right ? &animation_idle_right : &animation_idle_left;
-			timer_run_effect_generation.pause();  // 停止时暂停粒子生成
-        }
+			timer_run_effect_generation.resume();
+		}
+		else {
+			current_animation = is_facing_right ? &animation_idle_right : &animation_idle_left;
+			timer_run_effect_generation.pause();
+		}
 
+		// 添加边界检查
+		if (position.x < 0) position.x = 0;
+		if (position.y < 0) position.y = 0;
+		if (position.x + size.x > getwidth()) position.x = getwidth() - size.x;
+		if (position.y + size.y > getheight()) position.y = getheight() - size.y;
 
 
         // 特殊攻击状态
@@ -207,8 +219,14 @@ public:
 					mp = 0;
 				}
 				break;
+
 		}
-    
+
+		// 添加按键状态检查
+		if (GetAsyncKeyState(0x41) >= 0) is_left_key_down = false;    // A键
+		if (GetAsyncKeyState(0x44) >= 0) is_right_key_down = false;   // D键
+		if (GetAsyncKeyState(0x57) >= 0) is_up_key_down = false;      // W键
+		if (GetAsyncKeyState(0x53) >= 0) is_down_key_down = false;    // S键
     }
 	
 
