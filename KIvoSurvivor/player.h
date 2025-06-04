@@ -28,6 +28,7 @@ public:
 		timer_invulnerable.set_callback([&]()
 			{
 				is_invulnerable = false;
+
 			});//fucking lambda
 
 		timer_invulnerable_blink.set_wait_time(75);
@@ -118,6 +119,10 @@ public:
         timer_invulnerable_blink.on_update(delta);
  		timer_run_effect_generation.on_update(delta);
 
+
+		if (hp <= 0)
+			timer_die_effect_generation.on_update(delta);
+
         // 处理无敌闪烁效果
         if (is_showing_sketch_frame)
             sketch_image(current_animation->get_frame(), &img_sketch);
@@ -143,6 +148,17 @@ public:
 		for (const Particle& particle : particle_list)
 			particle.on_draw(camera);
 
+		// 调试信息
+		if (is_debug) {
+			settextcolor(RGB(255, 0, 0));  // 设置红色文本
+			settextstyle(20, 0, _T("IPix"));  // 设置字体
+			TCHAR debug_info[256];
+			_stprintf_s(debug_info, _T("无敌状态: %s, 闪烁: %s, HP: %d"),
+				is_invulnerable ? _T("是") : _T("否"),
+				is_showing_sketch_frame ? _T("是") : _T("否"),
+				hp);
+			outtextxy(10, 10, debug_info);
+		}
 
 		//绘制角色
 		if (hp > 0 && is_invulnerable && is_showing_sketch_frame)//受伤闪烁逻辑
@@ -252,6 +268,9 @@ public:
 	const Vector2& get_postion() const		{return position;}
 
 	const Vector2& get_size() const			{return size;}
+
+	bool is_invulnerable_state() const { return is_invulnerable; }  // 获取无敌状态
+	void trigger_invulnerable() { make_invulnerable(); }  // 触发无敌状态
 
 protected:
     const float run_velocity = 0.30f;  // 移动速度

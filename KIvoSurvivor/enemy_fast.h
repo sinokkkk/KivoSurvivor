@@ -55,7 +55,7 @@ public:
 protected:
     void on_collide_with_player() override
     {
-        target->set_hp(target->get_hp() - 10);
+        Enemy::on_collide_with_player();
     }
 };
 

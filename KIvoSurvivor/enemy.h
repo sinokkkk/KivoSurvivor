@@ -162,7 +162,10 @@ protected:
 
     virtual void on_collide_with_player(){
         // 对玩家造成伤害
-        target->set_hp(target->get_hp() - 10);
+        if (!target->is_invulnerable_state()) {  // 使用公共方法检查无敌状态
+            target->set_hp(target->get_hp() - 1);
+            target->trigger_invulnerable();  // 使用公共方法触发无敌状态
+        }
     }
 
     virtual void on_hurt(int damage)
