@@ -22,7 +22,7 @@ public:
         size.y = 60;
         move_speed = 0.15f;
         hp = 10;
-
+        sensei_damage=10;
         // 初始化动画
         animation_idle_left.set_atlas(&atlas_enemy_slow_idle_left);
         animation_idle_right.set_atlas(&atlas_enemy_slow_idle_right);
@@ -55,7 +55,13 @@ public:
 protected:
     void on_collide_with_player() override
     {
-        Enemy::on_collide_with_player();
+        // 对玩家造成伤害
+
+        if (!target->is_invulnerable_state()) {  // 使用公共方法检查无敌状态
+            target->set_hp(target->get_hp() -   sensei_damage);
+            mciSendString(_T("play aris_hurt from 0"), NULL, 0, NULL);
+            target->trigger_invulnerable();  // 使用公共方法触发无敌状态
+        }
     }
 };
 

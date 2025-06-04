@@ -7,6 +7,7 @@
 extern Scene* menu_scene;
 extern Scene* selector_scene;
 extern Scene* game_scene;
+extern Scene* shop_scene;
 
 class SceneManager{
 public:
@@ -14,7 +15,8 @@ public:
 	{
 		Menu,
 		Selector,
-		Game
+		Game,
+		Shop
 	};
 
 public:
@@ -40,6 +42,9 @@ public:
 			break;
 		case SceneType::Game:
 			current_scene = game_scene;
+			break;
+		case SceneType::Shop:
+			current_scene = shop_scene;
 			break;
 		default:
 			break;

@@ -82,6 +82,7 @@ protected:
     Vector2 last_hurt_direction;
     int hp = 100;
     float move_speed = 0.15f;  // 移动速度，随便改
+    int sensei_damage =1;
 
     // 状态标志
     bool is_facing_right = true;

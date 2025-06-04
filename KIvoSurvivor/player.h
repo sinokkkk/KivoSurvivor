@@ -272,8 +272,18 @@ public:
 	bool is_invulnerable_state() const { return is_invulnerable; }  // 获取无敌状态
 	void trigger_invulnerable() { make_invulnerable(); }  // 触发无敌状态
 
+	// 添加getter和setter方法
+	float get_attack_cd() const { return attack_cd; }
+	void set_attack_cd(float cd) { attack_cd = cd; }
+
+	float get_run_velocity() const { return run_velocity; }
+	void set_run_velocity(float velocity) { run_velocity = velocity; }
+
+	int get_max_hp() const { return hp; }
+	void set_max_hp(int new_hp) { hp = new_hp; }
+
 protected:
-    const float run_velocity = 0.30f;  // 移动速度
+    float run_velocity = 0.30f;  // 移动速度
     int mp = 0;
     int hp = 100;
     int attack_cd = 500;

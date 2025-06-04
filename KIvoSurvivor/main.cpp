@@ -5,6 +5,7 @@
 #include "game_scene.h"
 #include "scene_manager.h"
 #include "selector_scene.h"
+#include "shop_scene.h"
 
 #include <vector>
 
@@ -66,9 +67,19 @@ Atlas atlas_enemy_fast_die_right;
 
 
 
+IMAGE img_shop_background;
+IMAGE img_shop_attack_up;
+IMAGE img_shop_speed_up;
+IMAGE img_shop_health_up;
+
+
+
+
+
 Scene* menu_scene = nullptr;
 Scene* selector_scene = nullptr;
 Scene* game_scene = nullptr;
+Scene* shop_scene = nullptr;
 
 Player* player_1 = nullptr;
 
@@ -135,6 +146,10 @@ void load_game_resources()
 	atlas_enemy_fast_die_left.load_from_file(_T("resources/enemy_fast_die_%d.png"), 1);
 	flip_atlas(atlas_enemy_fast_die_left, atlas_enemy_fast_die_right);
 
+	loadimage(&img_shop_background, _T("resources/shop_background.png"));
+	loadimage(&img_shop_attack_up, _T("resources/shop_attack_up.png"));
+	loadimage(&img_shop_speed_up, _T("resources/shop_speed_up.png"));
+	loadimage(&img_shop_health_up, _T("resources/shop_health_up.png"));
 
 	mciSendString(_T("open resources/bgm_game.mp3 alias bgm_game"), NULL, 0, NULL);
 	mciSendString(_T("open resources/bgm_menu.mp3 alias bgm_menu"), NULL, 0, NULL);
@@ -151,7 +166,10 @@ void load_game_resources()
 	mciSendString(_T("open resources/aris_ex.mp3 alias aris_ex"), NULL, 0, NULL);
 	mciSendString(_T("open resources/aris_select.mp3 alias aris_select"), NULL, 0, NULL);
 	mciSendString(_T("open resources/aris_defeat.mp3 alias aris_defeat"), NULL, 0, NULL);
-}
+
+	mciSendString(_T("open resources/bgm_shop.mp3 alias bgm_shop"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_hurt.mp3 alias aris_hurt"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_shop.mp3 alias aris_shop"), NULL, 0, NULL);}
 
 int main(int argc, char** argv)
 {
@@ -163,6 +181,7 @@ int main(int argc, char** argv)
 	menu_scene = new MenuScene();
 	selector_scene = new SelecorScene();
 	game_scene = new GameScene();
+	shop_scene = new ShopScene();
 
 	scene_manager.set_current_scene(menu_scene);
 
@@ -202,6 +221,7 @@ int main(int argc, char** argv)
 	delete menu_scene; menu_scene = nullptr;
 	delete selector_scene; selector_scene = nullptr;
 	delete game_scene; game_scene = nullptr;
+	delete shop_scene; shop_scene = nullptr;
 
 
 
