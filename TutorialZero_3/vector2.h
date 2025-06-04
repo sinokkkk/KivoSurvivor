@@ -1,10 +1,9 @@
-#ifndef _VECTOR2_H_
+﻿#ifndef _VECTOR2_H_
 #define _VECTOR2_H_
 
 #include <cmath>
 
-class Vector2
-{
+class Vector2{
 public:
 	float x = 0;
 	float y = 0;

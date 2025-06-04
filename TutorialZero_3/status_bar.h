@@ -1,11 +1,10 @@
-#ifndef _STATUS_BAR_H_
+﻿#ifndef _STATUS_BAR_H_
 #define _STATUS_BAR_H_
 
 #include "util.h"
 #include <algorithm>  // 新增：用于std::max和std::min函数
 
-class StatusBar
-{
+class StatusBar{
 public:
 	StatusBar() = default;
 	~StatusBar() = default;

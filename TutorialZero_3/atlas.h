@@ -1,4 +1,4 @@
-#ifndef _ATLAS_H_
+﻿#ifndef _ATLAS_H_
 #define _ATLAS_H_
 
 #include "util.h"
@@ -6,8 +6,7 @@
 #include <vector>
 #include <graphics.h>
 
-class Atlas
-{
+class Atlas{
 public:
 	Atlas() = default;
 	~Atlas() = default;

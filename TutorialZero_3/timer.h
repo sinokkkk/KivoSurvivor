@@ -1,10 +1,9 @@
-#ifndef _TIMER_H_
+﻿#ifndef _TIMER_H_
 #define _TIMER_H_
 
 #include <functional>
 
-class Timer
-{
+class Timer{
 public:
 	Timer() = default;
 	~Timer() = default;

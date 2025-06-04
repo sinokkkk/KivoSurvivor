@@ -19,14 +19,15 @@ extern Camera main_camera;
 extern std::vector<Bullet*> bullet_list;
 extern Player* player_1;
 extern SceneManager scene_manager;
+extern bool is_game_over;
 
-class GameScene : public Scene
-{
+class GameScene : public Scene{
 public:
 	GameScene()
 	{
 		// 设置敌人生成计时器
 		timer_enemy_spawn.set_wait_time(2000);  // 每2秒生成一次
+		//可以更新波次时曲线减少生成间隔增加难度
 		timer_enemy_spawn.set_callback([&]()
 			{
 				spawn_enemy();
@@ -41,6 +42,7 @@ public:
 		pos_img_background.x = 0;
 		pos_img_background.y = 0;
 		bullet_list.clear();
+		mciSendString(_T("play aris_in from 0"), NULL, 0, NULL);
 		mciSendString(_T("play bgm_game repeat from 0"), NULL, 0, NULL);
 
 		// 开始生成敌人
@@ -65,8 +67,14 @@ public:
 		status_bar.set_hp(player_1->get_hp());
 		status_bar.set_mp(player_1->get_mp());
 
-
-
+		// 检查玩家生命值，如果小于等于 0，触发游戏结束
+		if (player_1 && player_1->get_hp() <= 0)
+		{
+			// 弹出消息框
+			MessageBox(GetHWnd(), _T("游戏结束！"), _T("提示"), MB_OK);
+			// 设置游戏结束标志，退出主循环
+			is_game_over = true;
+		}
 
 		// 更新敌人生成计时器
 		timer_enemy_spawn.on_update(delta);
@@ -83,8 +91,6 @@ public:
 				return false;
 			}),//wtf lamda
 			enemy_list.end());
-
-		
 	}
 
 	void on_draw(const Camera& camera) override{

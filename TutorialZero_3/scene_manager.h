@@ -1,4 +1,4 @@
-#ifndef _SCENE_MANAGER_H_
+﻿#ifndef _SCENE_MANAGER_H_
 #define _SCENE_MANAGER_H_
 
 #include "scene.h"
@@ -8,8 +8,7 @@ extern Scene* menu_scene;
 extern Scene* selector_scene;
 extern Scene* game_scene;
 
-class SceneManager
-{
+class SceneManager{
 public:
 	enum class SceneType
 	{

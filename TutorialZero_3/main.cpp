@@ -1,7 +1,6 @@
 ﻿#include "atlas.h"
 #include "bullet.h"
 #include "player.h"
-#include "platform.h"
 #include "menu_scene.h"
 #include "game_scene.h"
 #include "scene_manager.h"
@@ -12,6 +11,7 @@
 #pragma comment(lib, "Winmm.lib")
 
 bool is_debug = false;
+bool is_game_over = false;
 
 Camera main_camera;
 SceneManager scene_manager;
@@ -136,12 +136,6 @@ void load_game_resources()
 	flip_atlas(atlas_enemy_fast_die_left, atlas_enemy_fast_die_right);
 
 
-
-	// loadimage(&img_1P_winnner, _T("resources/1P_winner.png"));
-	// loadimage(&img_2P_winnner, _T("resources/2P_winner.png"));
-	// loadimage(&img_winnner_bar, _T("resources/winnner_bar.png"));
-
-
 	mciSendString(_T("open resources/bgm_game.mp3 alias bgm_game"), NULL, 0, NULL);
 	mciSendString(_T("open resources/bgm_menu.mp3 alias bgm_menu"), NULL, 0, NULL);
 	mciSendString(_T("open resources/bgm_select.mp3 alias bgm_select"), NULL, 0, NULL);
@@ -152,12 +146,16 @@ void load_game_resources()
 	mciSendString(_T("open resources/ui_confirm.wav alias ui_confirm"), NULL, 0, NULL);
 	mciSendString(_T("open resources/ui_switch.wav alias ui_switch"), NULL, 0, NULL);
 	mciSendString(_T("open resources/ui_win.wav alias ui_win"), NULL, 0, NULL);
+
+	mciSendString(_T("open resources/aris_in.mp3 alias aris_in"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_ex.mp3 alias aris_ex"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_select.mp3 alias aris_select"), NULL, 0, NULL);
 }
 
 int main(int argc, char** argv)
 {
 	ExMessage msg;
-	const int FPS = 360;
+	const int FPS = 240;
 
 	load_game_resources();
 
@@ -168,13 +166,13 @@ int main(int argc, char** argv)
 	scene_manager.set_current_scene(menu_scene);
 
 	HWND hwnd = initgraph(1280, 720, EW_SHOWCONSOLE);
-	SetWindowText(hwnd, _T("ֲ1"));
+	SetWindowText(hwnd, _T("ֲKivoSurvivor"));
 	settextstyle(28, 0, _T("IPix"));
 	setbkmode(TRANSPARENT);
 
 	BeginBatchDraw();
 
-	while (true)
+	while (!is_game_over)
 	{
 		DWORD frame_start_time = GetTickCount();
 
@@ -198,6 +196,15 @@ int main(int argc, char** argv)
 	}
 
 	EndBatchDraw();
+
+	// 清理资源这里需要添加所有加载资源的清理代码
+	delete menu_scene; menu_scene = nullptr;
+	delete selector_scene; selector_scene = nullptr;
+	delete game_scene; game_scene = nullptr;
+
+
+
+	closegraph(); // 添加关闭图形窗口
 
 	return 0;
 }

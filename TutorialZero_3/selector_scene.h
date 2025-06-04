@@ -19,8 +19,7 @@ extern SceneManager scene_manager;
 
 int selector_background_scroll_offset_x = 0;  // 背景滚动偏移量
 
-class SelecorScene : public Scene
-{
+class SelecorScene : public Scene{
 public:
 	SelecorScene() = default;
 	~SelecorScene() = default;
@@ -28,6 +27,8 @@ public:
 	void on_enter()
 	{
 		mciSendString(_T("play bgm_select repeat from 0"), NULL, 0, NULL);
+		mciSendString(_T("play aris_select from 0"), NULL, 0, NULL);
+
 
         int total_width = 4 * 300 + 3 * 10;  // 4张图片总宽度 + 3个间距
         int start_x = (getwidth() - total_width) / 2;  // 起始x坐标

@@ -1,4 +1,4 @@
-#ifndef _UTIL_H_
+﻿#ifndef _UTIL_H_
 #define _UTIL_H_
 
 #include "camera.h"
@@ -7,7 +7,7 @@
 #include <graphics.h>
 
 #pragma comment(lib, "MSIMG32.LIB")
-
+//工具函数，接口通用这一块拉满
 inline void putimage_alpha(int dst_x, int dst_y, IMAGE* img)
 {
 	int w = img->getwidth();

@@ -1,12 +1,11 @@
-#ifndef _SCENE_H_
+﻿#ifndef _SCENE_H_
 #define _SCENE_H_
 
 #include "camera.h"
 
 #include <graphics.h>
 
-class Scene
-{
+class Scene{
 public:
 	Scene() = default;
 	~Scene() = default;

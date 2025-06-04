@@ -7,17 +7,12 @@
 #include <functional>
 #include <graphics.h>
 
-class Animation
-{
+class Animation{
 public:
 	Animation() = default;
 	~Animation() = default;
 
-	void reset()
-	{
-		timer = 0;
-		idx_frame = 0;
-	}
+	void reset(){timer = 0;	idx_frame = 0;}
 
 	void set_atlas(Atlas* new_atlas)
 	{
@@ -57,15 +52,12 @@ public:
 		this->callback = callback;
 	}
 
-	void on_update(int delta)
-	{
+	void on_update(int delta){
 		timer += delta;
-		if (timer >= interval)
-		{
+		if (timer >= interval){
 			timer = 0;
 			idx_frame++;
-			if (idx_frame >= atlas->get_size())
-			{
+			if (idx_frame >= atlas->get_size()){
 				idx_frame = is_loop ? 0 : atlas->get_size() - 1;
 				if (!is_loop && callback)
 					callback();

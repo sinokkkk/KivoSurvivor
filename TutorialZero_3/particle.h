@@ -1,11 +1,10 @@
-#ifndef _PARTICLE_H_
+﻿#ifndef _PARTICLE_H_
 #define _PARTICLE_H_
 
 #include "atlas.h"
 #include "vector2.h"
 
-class Particle
-{
+class Particle{
 public:
 	Particle() = default;
 	Particle(const Vector2& position, Atlas* atlas, int lifespan)

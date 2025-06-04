@@ -28,7 +28,7 @@ public:
 		timer_invulnerable.set_callback([&]()
 			{
 				is_invulnerable = false;
-			});
+			});//fucking lambda
 
 		timer_invulnerable_blink.set_wait_time(75);
 		timer_invulnerable_blink.set_callback([&]()
@@ -69,7 +69,7 @@ public:
 	~Player() = default;
 
 	virtual void on_update(int delta){
-		// 计算移动方向（使用整数方向值）
+		// 计算移动方向//数学，很奇妙吧
 		int dir_x = is_right_key_down - is_left_key_down;
 		int dir_y = is_down_key_down - is_up_key_down;
 		
@@ -222,7 +222,7 @@ public:
 
 		}
 
-		// 添加按键状态检查
+		// 解决措施：疯狂添加按键状态检查
 		if (GetAsyncKeyState(0x41) >= 0) is_left_key_down = false;    // A键
 		if (GetAsyncKeyState(0x44) >= 0) is_right_key_down = false;   // D键
 		if (GetAsyncKeyState(0x57) >= 0) is_up_key_down = false;      // W键
@@ -241,6 +241,7 @@ public:
 	virtual void on_attack_ex() { }
 
 	void set_hp(int val)	{ hp = val; }
+	void set_mp(int val)	{ mp = val; }
 
 	int get_hp() const		{return hp;}
 
@@ -255,7 +256,7 @@ public:
 protected:
     const float run_velocity = 0.30f;  // 移动速度
     int mp = 0;
-    int hp = 1000;
+    int hp = 100;
     int attack_cd = 500;
 
     IMAGE img_sketch;

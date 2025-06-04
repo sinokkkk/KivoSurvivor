@@ -62,7 +62,7 @@ public:
         // 属于Aris的计时器或特效
 
         // 设置角色大小
-        size.x = 80, size.y = 96;
+        size.x = 70, size.y = 70;
 
         // 设置攻击冷却
         attack_cd = 120; // Aris攻击速度略慢
@@ -88,8 +88,8 @@ public:
 
         is_facing_right ? animation_attack_ex_right.reset() : animation_attack_ex_left.reset();
 
-        // 触发EX技能音效(待定)
-        //mciSendString(_T("play aris_ex from 0"), NULL, 0, NULL);
+        // 触发EX技能音效
+        mciSendString(_T("play aris_ex from 0"), NULL, 0, NULL);
         
     }
 
@@ -97,10 +97,10 @@ public:
         Player::on_update(delta);//调用基类方法
 
         if (is_attacking_ex){
-            main_camera.shake(8, 200); // 震屏效果
+            main_camera.shake(4, 200); // 震屏效果
             timer_attack_ex.on_update(delta);
             timer_spawn_bullet_ex.on_update(delta);
-            // 可以在这里添加ex期间的特殊逻辑
+            // 可以在这里随便添加ex期间的特殊逻辑
         }
     }
 

@@ -1,4 +1,4 @@
-#ifndef _MENU_SCENE_H_
+﻿#ifndef _MENU_SCENE_H_
 #define _MENU_SCENE_H_
 
 #include "scene.h"
@@ -7,8 +7,7 @@ extern Atlas atlas_intro;
 
 extern SceneManager scene_manager;
 
-class MenuScene : public Scene
-{
+class MenuScene : public Scene{
 public:
 	MenuScene() = default;
 	~MenuScene() = default;
@@ -17,7 +16,7 @@ public:
 	{
 		mciSendString(_T("play bgm_menu repeat from 0"), NULL, 0, NULL);
 		animation_intro.set_atlas(&atlas_intro);
-		animation_intro.set_interval(4000 );
+		animation_intro.set_interval(3000 );
 		animation_intro.set_loop(true);
 	}
 	void on_update(int delta) {

@@ -20,7 +20,7 @@ public:
         // 设置基础属性
         size.x = 50;
         size.y = 50;
-        move_speed = 0.15f;
+        move_speed = 0.2f;
         hp = 20;
 
         // 初始化动画
@@ -55,7 +55,6 @@ public:
 protected:
     void on_collide_with_player() override
     {
-        // 快速敌人造成较少伤害
         target->set_hp(target->get_hp() - 10);
     }
 };

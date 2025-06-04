@@ -47,9 +47,6 @@
     <ClInclude Include="camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="scene_manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="menu_scene.h">
       <Filter>头文件\scene</Filter>
     </ClInclude>
@@ -60,9 +57,6 @@
       <Filter>头文件\scene</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="platform.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
@@ -98,6 +92,9 @@
     <ClInclude Include="enemy_slow.h">
       <Filter>头文件\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="scene_manager.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TutorialZero_3.rc">
@@ -105,7 +102,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon.ico">
+    <Image Include="..\..\..\Downloads\icon.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

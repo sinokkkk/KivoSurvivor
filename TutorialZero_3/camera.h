@@ -1,11 +1,10 @@
-#ifndef _CAMERA_H_
+﻿#ifndef _CAMERA_H_
 #define _CAMERA_H_
 
 #include "timer.h"
 #include "vector2.h"
 
-class Camera
-{
+class Camera{
 public:
 	Camera()
 	{

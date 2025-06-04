@@ -1,4 +1,4 @@
-#ifndef _ENEMY_H_
+﻿#ifndef _ENEMY_H_
 #define _ENEMY_H_
 
 #include "timer.h"
@@ -143,6 +143,7 @@ protected:
             
             if (check_collision(bullet->get_position(), bullet->get_size()))
             {
+                target->set_mp(target->get_mp() + 10);
                 on_hurt(bullet->get_damage());
                 bullet->on_collide();
                 bullet->set_valid(false);
