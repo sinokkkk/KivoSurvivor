@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f3968ab2-df8e-42de-8e15-4fe9e940b589}</ProjectGuid>
-    <RootNamespace>TutorialZero3</RootNamespace>
+    <ProjectGuid>{3efd8dd7-e4fd-4eb2-a084-f74be4a2385a}</ProjectGuid>
+    <RootNamespace>KIvoSurvivor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -129,9 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="aris_player.h" />
     <ClInclude Include="atlas.h" />
@@ -146,6 +143,7 @@
     <ClInclude Include="particle.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene_manager.h" />
     <ClInclude Include="selector_scene.h" />
@@ -155,10 +153,13 @@
     <ClInclude Include="vector2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TutorialZero_3.rc" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Downloads\icon.ico" />
+    <ResourceCompile Include="KIvoSurvivor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

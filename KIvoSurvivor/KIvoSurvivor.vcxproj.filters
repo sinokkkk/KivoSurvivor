@@ -13,75 +13,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\scene">
-      <UniqueIdentifier>{63ffcf94-11ae-4e2c-9f16-6185ede547ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\player">
-      <UniqueIdentifier>{6e1643b9-15f1-4dc7-a843-19132c060342}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\bullet">
-      <UniqueIdentifier>{0375dec1-6da9-4be7-a267-3a57b25a9626}</UniqueIdentifier>
+      <UniqueIdentifier>{299cbc44-9019-4444-8214-6271b1fb4555}</UniqueIdentifier>
     </Filter>
     <Filter Include="头文件\enemy">
-      <UniqueIdentifier>{17bb8437-1d18-4c46-ae04-315c015aaf22}</UniqueIdentifier>
+      <UniqueIdentifier>{37612bf7-7a84-4a0f-946b-07448d66e939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\bullet">
+      <UniqueIdentifier>{f7c86b32-547a-42b1-9a95-807dfea8e444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\scene">
+      <UniqueIdentifier>{ff52a74b-083a-4abf-865e-2aff7b056fcc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="atlas.h">
+    <ClInclude Include="vector2.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2.h">
+    <ClInclude Include="atlas.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="menu_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="selector_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="game_scene.h">
-      <Filter>头文件\scene</Filter>
+    <ClInclude Include="particle.h">
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>头文件\player</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>头文件\bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="particle.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="status_bar.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="aris_player.h">
-      <Filter>头文件\player</Filter>
+    <ClInclude Include="timer.h">
+      <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="bullet_aris.h">
-      <Filter>头文件\bullet</Filter>
+    <ClInclude Include="util.h">
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
       <Filter>头文件\enemy</Filter>
@@ -92,17 +63,49 @@
     <ClInclude Include="enemy_slow.h">
       <Filter>头文件\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="aris_player.h">
+      <Filter>头文件\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>头文件\player</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
     <ClInclude Include="scene_manager.h">
       <Filter>头文件\scene</Filter>
     </ClInclude>
+    <ClInclude Include="selector_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="game_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>头文件\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet_aris.h">
+      <Filter>头文件\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TutorialZero_3.rc">
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KIvoSurvivor.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Downloads\icon.ico">
+    <Image Include="icon.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
