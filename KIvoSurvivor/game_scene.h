@@ -26,7 +26,7 @@ public:
 	GameScene()
 	{
 		// 设置敌人生成计时器
-		timer_enemy_spawn.set_wait_time(2000);  // 每2秒生成一次
+		timer_enemy_spawn.set_wait_time(1500);  // 每2秒生成一次
 		timer_enemy_spawn.set_callback([&]()
 			{
 				spawn_enemy();

@@ -121,7 +121,7 @@ public:
         putimage_alpha(0, 0, &img_shop_background);
         
         // 绘制标题
-        LPCTSTR str_shop_title = _T("天使24");
+        LPCTSTR str_shop_title = _T("Angel 24");
         outtextxy_shaded((getwidth() - textwidth(str_shop_title)) / 2, 10, str_shop_title);
         
         // 绘制商品
