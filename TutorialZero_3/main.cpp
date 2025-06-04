@@ -150,6 +150,7 @@ void load_game_resources()
 	mciSendString(_T("open resources/aris_in.mp3 alias aris_in"), NULL, 0, NULL);
 	mciSendString(_T("open resources/aris_ex.mp3 alias aris_ex"), NULL, 0, NULL);
 	mciSendString(_T("open resources/aris_select.mp3 alias aris_select"), NULL, 0, NULL);
+	mciSendString(_T("open resources/aris_defeat.mp3 alias aris_defeat"), NULL, 0, NULL);
 }
 
 int main(int argc, char** argv)

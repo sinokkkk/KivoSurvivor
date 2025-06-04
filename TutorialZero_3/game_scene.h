@@ -70,6 +70,8 @@ public:
 		// 检查玩家生命值，如果小于等于 0，触发游戏结束
 		if (player_1 && player_1->get_hp() <= 0)
 		{
+			
+			mciSendString(_T("play aris_defeat from 0"), NULL, 0, NULL);
 			// 弹出消息框
 			MessageBox(GetHWnd(), _T("游戏结束！"), _T("提示"), MB_OK);
 			// 设置游戏结束标志，退出主循环
